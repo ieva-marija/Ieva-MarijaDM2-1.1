@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include "mylib.h"
+#include <limits>
 
 using namespace std;
 
@@ -29,11 +30,19 @@ int main()
             studentas.rezultatas = galutinisMed(studentas);
         } else {
             cout << "you had one job !" << endl;
-            return 0;
+            return 1;
         }
     }
 
-    cout << left << setw(15) << "Vardas" << setw(15) << "Pavarde" << setw(15) << "Galutinis balas" << endl;
+    cout << left << setw(15) << "Vardas" << setw(15) << "Pavarde" << setw(15) << "Galutinis balas";
+    for (Studentas& studentas : studentai) {
+        if (pasirinkimas == 1) {
+            cout << "(Vid.)" << endl;
+        }
+        else if (pasirinkimas == 2) {
+            cout << "(Med.)" << endl;
+        }
+    }
     cout << "---------------|---------------|-------" << endl;
     for (const Studentas& studentas : studentai) {
         cout << setw(15) << studentas.vardas << "|" << setw(15) << studentas.pavarde << "|" << fixed << setprecision(2) << setw(15) << studentas.rezultatas << endl;
