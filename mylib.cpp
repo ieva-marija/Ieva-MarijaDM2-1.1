@@ -1,0 +1,28 @@
+#include "mylib.h"
+
+Studentas ivesk()
+{
+  Studentas temp;
+  cout << "Iveskite varda: ";
+  cin >> temp.vardas;
+  cout << "Iveskite pavarde: ";
+  cin >> temp.pavarde;
+  cout << "Iveskite pazymiu kieki: ";
+    int n;
+    cin >> n;
+    temp.vidurkis = 0;
+    for (int i = 0; i < n; i++) {
+        int pazymys;
+        cout << "Iveskite pazymi: ";
+        cin >> pazymys;
+        temp.pazymiai.push_back(pazymys);
+        temp.vidurkis += pazymys;
+    }
+    if (n > 0) {
+        temp.vidurkis = static_cast<float>(temp.vidurkis) / n;
+    }
+  cout << "Iveskite egzamino pazymi: ";
+  cin >> temp.egzaminas;
+  temp.rezultatas=0.4*temp.vidurkis+0.6*temp.egzaminas;
+  return temp;
+}
