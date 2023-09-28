@@ -18,7 +18,6 @@ using std::setw;
 using std::left;
 using std::right;
 
-
 struct Studentas {
     std::string vardas, pavarde;
     std::vector<int> pazymiai;
@@ -29,6 +28,5 @@ struct Studentas {
 Studentas ivesk();
 float galutinisVid(const Studentas& studentas);
 float galutinisMed(const Studentas& studentas);
-void atsitiktinis(Studentas& studentas);
 
 #endif // MYLIB_H
