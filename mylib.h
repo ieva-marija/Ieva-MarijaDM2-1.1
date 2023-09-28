@@ -27,5 +27,7 @@ struct Studentas {
 };
 
 Studentas ivesk();
+float galutinisMed(const Studentas& studentas);
+void atsitiktinis(Studentas& studentas);
 
 #endif // MYLIB_H
