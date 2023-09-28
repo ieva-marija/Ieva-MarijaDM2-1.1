@@ -8,28 +8,15 @@ Studentas ivesk()
   cin >> temp.vardas;
   cout << "Įveskite pavardę: ";
   cin >> temp.pavarde;
-  cout << "Įveskite pažymių kiekį: ";
-  int n;
-  cin >> n;
-  temp.vidurkis=0;
-  for(int i=0; i<n; i++)
-    {
-      int pazymys;
-      cout << "Iveskite pazymi: ";
-      cin >> pazymys;
-      temp.pazymiai.push_back(pazymys);
-      temp.vidurkis+=pazymys;
-    }
-  if (n>0)
-  {
-      temp.vidurkis=static_cast<float>(temp.vidurkis/n);
-  }
-  sort(temp.pazymiai.begin(), temp.pazymiai.end());
-    if (n % 2 == 0) {
-        int vidurys = n / 2;
-        temp.mediana = static_cast<float>(temp.pazymiai[vidurys - 1] + temp.pazymiai[vidurys]) / 2;
-    } else {
-        temp.mediana = static_cast<float>(temp.pazymiai[n / 2]);
+  cout << "Iveskite namu darbu rezultatus (iveskite -1, kai suvedete visus norimus pazymius): ";
+    int pazymys;
+    while (cin >> pazymys) {
+            if (pazymys == -1) {
+            cin.clear();
+            cin.ignore(256, '\n');
+            break;
+        }
+        temp.pazymiai.push_back(pazymys);
     }
   cout << "Įveskite egzamino pažymį: ";
   cin >> temp.egzaminas;
@@ -37,11 +24,28 @@ Studentas ivesk()
 };
 
 float galutinisVid(const Studentas& studentas) {
-    float vidurkis = studentas.vidurkis;
+    float vidurkis = 0;
+    for (int pazymys : studentas.pazymiai) {
+        vidurkis += pazymys;
+    }
+    if (!studentas.pazymiai.empty()) {
+        vidurkis = static_cast<float>(vidurkis) / studentas.pazymiai.size();
+    }
     return 0.4 * vidurkis + 0.6 * studentas.egzaminas;
 };
 
 float galutinisMed(const Studentas& studentas) {
-    float mediana = studentas.mediana;
-    return 0.4 * mediana + 0.6 * studentas.egzaminas;
+    if (studentas.pazymiai.empty()) {
+        return 0.4 * 0 + 0.6 * studentas.egzaminas;
+    }
+    vector<int> pazymiai = studentas.pazymiai;
+    sort(pazymiai.begin(), pazymiai.end());
+    if (pazymiai.size() % 2 == 0) {
+        int vidurys = pazymiai.size() / 2;
+        float mediana = static_cast<float>(pazymiai[vidurys - 1] + pazymiai[vidurys]) / 2;
+        return 0.4 * mediana + 0.6 * studentas.egzaminas;
+    } else {
+        float mediana = static_cast<float>(pazymiai[pazymiai.size() / 2]);
+        return 0.4 * mediana + 0.6 * studentas.egzaminas;
+    }
 };
