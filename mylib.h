@@ -27,6 +27,7 @@ struct Studentas {
 };
 
 Studentas ivesk();
+float galutinisVid(const Studentas& studentas);
 float galutinisMed(const Studentas& studentas);
 void atsitiktinis(Studentas& studentas);
 
