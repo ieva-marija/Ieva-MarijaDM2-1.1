@@ -3,6 +3,8 @@
 #include <ctime>
 #include <cstdlib>
 #include <limits>
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -95,3 +97,42 @@ float galutinisMed(const Studentas& studentas) {
         return 0.4 * mediana + 0.6 * studentas.egzaminas;
     }
 };
+
+void skaityti(vector<Studentas>& studentai, const string& pav) {
+   ifstream F(pav);
+
+   if (!F) {
+        cout << "neatidaro " << pav << endl;
+        return;
+    }
+
+    string line;
+    bool firstLine = true; 
+    while (getline(F, line)) {
+        if (firstLine) {
+            firstLine = false; 
+            continue;
+        }
+        istringstream iss(line);
+        Studentas studentas;
+        if (iss >> studentas.vardas >> studentas.pavarde) {
+            int pazymys;
+            while (iss >> pazymys) {
+                if (pazymys == -1) {
+                    break;
+                }
+                studentas.pazymiai.push_back(pazymys);
+            }
+            if (studentas.pazymiai.size() > 0) {
+                studentas.egzaminas = studentas.pazymiai.back();
+                studentas.pazymiai.pop_back();
+                studentai.push_back(studentas);
+            } else {
+                cout << "erroras!" << endl;
+            }
+        } else {
+            cout << "daugiau studentu nebera" << endl;
+        }
+    }
+    F.close();
+}
