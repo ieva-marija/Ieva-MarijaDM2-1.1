@@ -67,6 +67,8 @@ Studentas ivesk()
         cout << "nu cia nei 5, nei 9........" << endl;
         return temp;
      }
+  temp.rezultatasv=galutinisVid(temp);
+  temp.rezultatasm=galutinisMed(temp);
   return temp;
 };
 
