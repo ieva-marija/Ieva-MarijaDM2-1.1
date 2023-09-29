@@ -27,9 +27,7 @@ int main()
     }
     else if(pasirinkimas3 == 'F' || pasirinkimas3 == 'f')
     {
-        string pav;
-        cout << "Iveskite failo pavadinima: ";
-        cin >> pav;
+        string pav = "kursiokai.txt";
         skaityti(studentai, pav);
     }
     else
@@ -43,11 +41,6 @@ int main()
     cout << "Pagal vidurki - 1" << endl;
     cout << "Pagal mediana - 2" << endl;
     cin >> pasirinkimas;
-
-    for (int i = 0; i < studentu_sk; i++) {
-        cout << "Iveskite duomenis apie studenta:" << endl;
-        studentai.push_back(ivesk());
-    }
 
     for (Studentas& studentas : studentai) {
         if (pasirinkimas == 1) {
