@@ -28,5 +28,6 @@ struct Studentas {
 Studentas ivesk();
 float galutinisVid(const Studentas& studentas);
 float galutinisMed(const Studentas& studentas);
+void skaityti(vector<Studentas>& studentai, const string& pav);
 
 #endif // MYLIB_H
