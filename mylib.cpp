@@ -32,7 +32,6 @@ Studentas ivesk()
             temp.pazymiai.push_back(a_pazymys);
             cout << a_pazymys << " ";
         }
-
         srand(time(0));
         temp.egzaminas = rand() % 10 + 1;
         cout << "Sugeneruotas egzamino pazymys: "<< temp.egzaminas << endl;
@@ -107,7 +106,6 @@ void skaityti(vector<Studentas>& studentai, const string& pav) {
         cout << "neatidaro " << pav << endl;
         return;
     }
-
     string line;
     bool firstLine = true; 
     while (getline(F, line)) {
@@ -128,6 +126,8 @@ void skaityti(vector<Studentas>& studentai, const string& pav) {
             if (studentas.pazymiai.size() > 0) {
                 studentas.egzaminas = studentas.pazymiai.back();
                 studentas.pazymiai.pop_back();
+                studentas.rezultatasv = galutinisVid(studentas); 
+                studentas.rezultatasm = galutinisMed(studentas);
                 studentai.push_back(studentas);
             } else {
                 cout << "erroras!" << endl;
