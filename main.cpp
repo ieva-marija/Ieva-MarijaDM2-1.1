@@ -7,10 +7,36 @@ using namespace std;
 
 int main()
 {
-    int studentu_sk;
-    cout << "Iveskite studentu skaiciu: ";
-    cin >> studentu_sk;
     vector <Studentas> studentai;
+
+    char pasirinkimas3;
+    cout << "Pasirinkite, kaip norite ivesti duomenis:" << endl;
+    cout << "R - Rankiniu budu" << endl;
+    cout << "F - Nuskaityti is .txt failo" << endl;
+    cin >> pasirinkimas3;
+
+    if (pasirinkimas3 == 'R' || pasirinkimas3 == 'r')
+    {
+        int studentu_sk;
+        cout << "Iveskite studentu skaiciu: ";
+        cin >> studentu_sk;
+        for (int i = 0; i < studentu_sk; i++) {
+            cout << "Iveskite duomenis apie studenta:" << endl;
+            studentai.push_back(ivesk());
+        }
+    }
+    else if(pasirinkimas3 == 'F' || pasirinkimas3 == 'f')
+    {
+        string pav;
+        cout << "Iveskite failo pavadinima: ";
+        cin >> pav;
+        skaityti(studentai, pav);
+    }
+    else
+    {
+        cout << "PASIRINK" << endl;
+        return 1;
+    }
 
     int pasirinkimas;
     cout << "Pasirinkite, kaip skaiciuoti studento galutini bala:" << endl;
