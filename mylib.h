@@ -22,7 +22,7 @@ struct Studentas {
     std::string vardas, pavarde;
     std::vector<int> pazymiai;
     int egzaminas;
-    float vidurkis, mediana, rezultatas;
+    float vidurkis, mediana, rezultatasv, rezultatasm;
 };
 
 Studentas ivesk();
