@@ -36,35 +36,12 @@ int main()
         return 1;
     }
 
-    int pasirinkimas;
-    cout << "Pasirinkite, kaip skaiciuoti studento galutini bala:" << endl;
-    cout << "Pagal vidurki - 1" << endl;
-    cout << "Pagal mediana - 2" << endl;
-    cin >> pasirinkimas;
+    cout << left << setw(15) << "Vardas" << setw(15) << "Pavarde" << setw(15) << "Galutinis (Vid.) Galutinis (Med.)" << endl;
+    cout << "---------------|---------------|----------------------------------" << endl;
 
-    for (Studentas& studentas : studentai) {
-        if (pasirinkimas == 1) {
-            studentas.rezultatas = galutinisVid(studentas);
-        } else if (pasirinkimas == 2) {
-            studentas.rezultatas = galutinisMed(studentas);
-        } else {
-            cout << "you had one job !" << endl;
-            return 1;
-        }
-    }
-
-    cout << left << setw(15) << "Vardas" << setw(15) << "Pavarde" << setw(15) << "Galutinis balas";
-    for (Studentas& studentas : studentai) {
-        if (pasirinkimas == 1) {
-            cout << "(Vid.)" << endl;
-        }
-        else if (pasirinkimas == 2) {
-            cout << "(Med.)" << endl;
-        }
-    }
-    cout << "---------------|---------------|-------" << endl;
     for (const Studentas& studentas : studentai) {
-        cout << setw(15) << studentas.vardas << "|" << setw(15) << studentas.pavarde << "|" << fixed << setprecision(2) << setw(15) << studentas.rezultatas << endl;
+            cout << setw(15) << studentas.vardas << "|" << setw(15) << studentas.pavarde << "|"
+                 << fixed << setprecision(2) << setw(15) << studentas.rezultatasv << fixed << setprecision(2) << studentas.rezultatasm << endl;
     }
     return 0;
 }
