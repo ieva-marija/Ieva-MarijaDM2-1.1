@@ -14,36 +14,37 @@ Studentas ivesk()
   cout << "Iveskite pavarde: ";
   cin >> temp.pavarde;
 
-  int pazymys;
-  char pasirinkimas2;
+ int pazymys;
+  int pasirinkimas2;
   cout << "Ar norite, kad programa studento pazymius ir egzamino rezultata generuotu atsitiktinai?" << endl;
-  cout << "T - taip, noriu, aciu" << endl;
-  cout << "N - ne, noriu ivesti savarankiskai" << endl;
+  cout << "5 - taip, noriu, aciu" << endl;
+  cout << "9 - ne, noriu ivesti savarankiskai" << endl;
     cin >> pasirinkimas2;
 
-    if (pasirinkimas2 == 'T' || pasirinkimas2== 't') {
-             srand(time(0));
-             int a_pazymiai_sk = rand() % 11;
-             cout << "Sugeneruoti atsitiktinai pazymiai: ";
-             for (int i = 0; i < a_pazymiai_sk; ++i) {
-                    int a_pazymys = rand() % 11 + 1;
-                    temp.pazymiai.push_back(a_pazymys);
-                    cout << a_pazymys << " ";
-              }  
-             srand(time(0));
-             temp.egzaminas = rand() % 10 + 1;
-             cout << "Sugeneruotas egzamino pazymys: "<< temp.egzaminas << endl;
-             cout << "\n";
+    if (pasirinkimas2 == 5) {
+        srand(time(0));
+        int a_pazymiai_sk = rand() % 11;
+        cout << "Sugeneruoti atsitiktinai pazymiai: ";
+        for (int i = 0; i < a_pazymiai_sk; ++i) {
+            int a_pazymys = rand() % 11 + 1;
+            temp.pazymiai.push_back(a_pazymys);
+            cout << a_pazymys << " ";
+        }
+
+        srand(time(0));
+        temp.egzaminas = rand() % 10 + 1;
+        cout << "Sugeneruotas egzamino pazymys: "<< temp.egzaminas << endl;
+        cout << "\n";
     }
-    else if (pasirinkimas2 == 'N' || pasirinkimas2 == 'n') {
-           while (true) {
-                cout << "Iveskite namu darbu rezultatus (iveskite -1, kai suvedete visus norimus pazymius): ";
-                if (cin >> pazymys) {
-                    if (pazymys == -1) {
-                        cin.clear();
-                        cin.ignore(256, '\n');
-                        break;
-                    }
+     else if (pasirinkimas2 == 9) {
+       while (true) {
+            cout << "Iveskite namu darbu rezultatus (iveskite -1, kai suvedete visus norimus pazymius): ";
+            if (cin >> pazymys) {
+                if (pazymys == -1) {
+                    cin.clear();
+                    cin.ignore(256, '\n');
+                    break;
+                }
                 if (pazymys >= 0 && pazymys <= 10) {
                     temp.pazymiai.push_back(pazymys);
                 }
@@ -51,18 +52,18 @@ Studentas ivesk()
                     cout << "??????????" << endl;
                     }
             }
-               else {
-                  cin.clear();
-                  cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                  cout << "????????????!!" << endl;
+            else {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "????????????" << endl;
                 }
        }
-          cout << "Iveskite egzamino pazymi: ";
-          cin >> temp.egzaminas;
+       cout << "Iveskite egzamino pazymi: ";
+        cin >> temp.egzaminas;
      }
-    else {
-          cout << "nu cia nei T, nei N........" << endl;
-          return temp;
+     else {
+        cout << "nu cia nei 5, nei 9........" << endl;
+        return temp;
      }
   return temp;
 };
