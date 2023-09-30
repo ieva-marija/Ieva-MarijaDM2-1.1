@@ -1,6 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include "mylib.h"
+#include "mylib2.h"
 #include <limits>
 
 using namespace std;
@@ -8,38 +9,11 @@ using namespace std;
 int main()
 {
     vector <Studentas> studentai;
-
-    char pasirinkimas3;
-    cout << "Pasirinkite, kaip norite ivesti duomenis:" << endl;
-    cout << "R - Rankiniu budu" << endl;
-    cout << "F - Nuskaityti is .txt failo" << endl;
-    cin >> pasirinkimas3;
-
-    if (pasirinkimas3 == 'R' || pasirinkimas3 == 'r')
-    {
-        int studentu_sk;
-        cout << "Iveskite studentu skaiciu: ";
-        cin >> studentu_sk;
-        for (int i = 0; i < studentu_sk; i++) {
-            cout << "Iveskite duomenis apie studenta:" << endl;
-            studentai.push_back(ivesk());
-        }
-    }
-    else if(pasirinkimas3 == 'F' || pasirinkimas3 == 'f')
-    {
-        string pav = "kursiokai.txt";
-        skaityti(studentai, pav);
-    }
-    else
-    {
-        cout << "PASIRINK" << endl;
-        return 1;
-    }
-
-    std::sort(studentai.begin(), studentai.end(), [](const Studentas& a, const Studentas& b) {
-                    return a.pavarde < b.pavarde;
-    });
-
+    
+    rankinisFailinis(studentai);
+        
+    rusiavimas(studentai);
+    
     cout << left << setw(15) << "Vardas" << setw(15) << "Pavarde" << setw(15) << "Galutinis (Vid.) " << setw(15) << "Galutinis (Med.)" << endl;
     cout << "----------------------------------------------------------------" << endl;
 
