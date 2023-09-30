@@ -36,12 +36,16 @@ int main()
         return 1;
     }
 
-    cout << left << setw(15) << "Vardas" << setw(15) << "Pavarde" << setw(15) << "Galutinis (Vid.) Galutinis (Med.)" << endl;
-    cout << "---------------|---------------|----------------------------------" << endl;
+    std::sort(studentai.begin(), studentai.end(), [](const Studentas& a, const Studentas& b) {
+                    return a.pavarde < b.pavarde;
+    });
+
+    cout << left << setw(15) << "Vardas" << setw(15) << "Pavarde" << setw(15) << "Galutinis (Vid.) " << setw(15) << "Galutinis (Med.)" << endl;
+    cout << "----------------------------------------------------------------" << endl;
 
     for (const Studentas& studentas : studentai) {
-            cout << setw(15) << studentas.vardas << "|" << setw(15) << studentas.pavarde << "|"
-                 << fixed << setprecision(2) << setw(15) << studentas.rezultatasv << fixed << setprecision(2) << studentas.rezultatasm << endl;
+            cout << setw(15) << studentas.vardas << setw(15) << studentas.pavarde
+                 << fixed << setprecision(2) << setw(16) << studentas.rezultatasv << " " << fixed << setprecision(2) << setw(15) << studentas.rezultatasm << endl;
     }
     return 0;
 }
