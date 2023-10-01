@@ -1,2 +1,7 @@
 # Ieva-MarijaDM2-1.1
-pirma užduotis
+Programa pirmiausia paklausia vartotojo, ar jis norės įvesti duomenis ranka, ar nuskaityti iš tekstinio (.txt) failo.
+Įvedant duomenis ranka, vartotojas turi įvesti šiuos duomenis: kiek bus studentų (studentu_sk) ir kiekvieno iš šių studentų vardą bei pavardę. Programa taip pat reikalauja pateikti studento namų darbų rezultatus (sveikasis skaičius nuo 1 iki 10) ir egzamino rezultatą, kuris taip pat yra sveikasis skaičius nemažesnis už 1 bei nedidesnis už 10. Čia vartotojas turi pasirinkimą - šiuos duomenis suvesti "rankiniu" būdu ar leisti programai sugeneruoti atsitiktinius rezultatus. Vedant namų darbų rezultatus ranka, vartotojas, nusprendęs, kad jau suvedė visus norimus namų darbų rezultatus, parašo -1 ir tada įveda studento egzamino rezultatą.
+Jei vartotojas pasirinko nuskaityti duomenis iš failo, programa visus šiuos duomenis perskaito iš tam tikro failo tekstinio failo (pvz.: kursiokai.txt). Jei toks failas neegzistuoja, programa "pagauna" šią klaidą ir praneša tai vartotojui. 
+Studentų namų darbų rezultatus ir egzaminą naudoja apskaičiuoti galutiniam balui, kurio sandara: 0.4*vidurkis/mediana + 0.6*egzaminas. Apskaičiuoti vidurkį bei medianą mes naudojame float funkcijas, kuriose taip pat ir apskaičiuojamas galutinis balas atitinkamai pagal vidurkį ir medianą. Šiose funkcijose taip pat patikriname, ar nėra dalybos iš nulio, t.y. ar nėra taip, kad studentas neatliko nei vienų namų darbų. 
+Vėliau studentai yra surūšiuojami pagal jų pavardę abėcėlės tvarka.
+Galiausiai išvedama yra tokia "lentelė", kurioje matome studentus (surūšiuotus pagal pavardę) - jų vardus, pavardes ir galutinį rezultatą pagal vidurkį bei pagal medianą. 
