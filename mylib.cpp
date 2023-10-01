@@ -111,9 +111,9 @@ int rankinisFailinis(vector<Studentas>& studentai) {
 void skaityti(vector<Studentas>& studentai, const string& pav) {
    ifstream F(pav);
 
+   try {
    if (!F) {
-        cout << "neatidaro " << pav << endl;
-        return;
+        throw runtime_error("nera tokio failo: " + pav);
     }
 
     string line;
@@ -147,22 +147,34 @@ void skaityti(vector<Studentas>& studentai, const string& pav) {
         }
     }
     F.close();
+   }
+    catch (const exception& e) {
+        cerr << "neperskaito...:" << e.what() << endl;
+    }
 };
 //-------------------------------------------------------
 float galutinisVid(const Studentas& studentas) {
+    try {
     float vidurkis = 0;
+    if (studentas.pazymiai.empty()) {
+            throw runtime_error("cia nieko nera??");
+        }
     for (int pazymys : studentas.pazymiai) {
         vidurkis += pazymys;
     }
-    if (!studentas.pazymiai.empty()) {
-        vidurkis = static_cast<float>(vidurkis) / studentas.pazymiai.size();
+    vidurkis = static_cast<float>(vidurkis) / studentas.pazymiai.size();
+    return 0.4 * vidurkis + 0.6 * studentas.egzaminas;
     }
-    return 0.4 * vidurkis + 0.6 * studentas.egzaminas;;
+    catch (const exception& e) {
+        cerr << "Klaida: " << e.what() << endl;
+        return 0.0;
+    }
 };
 //--------------------------------------------------------
 float galutinisMed(const Studentas& studentas) {
+    try {
     if (studentas.pazymiai.empty()) {
-        return 0.4 * 0 + 0.6 * studentas.egzaminas;
+        throw runtime_error("kaip skaiciuosi mediana, jei cia nieko nera?");
     }
     vector<int> pazymiai = studentas.pazymiai;
     sort(pazymiai.begin(), pazymiai.end());
@@ -173,13 +185,12 @@ float galutinisMed(const Studentas& studentas) {
     } else {
         float mediana = static_cast<float>(pazymiai[pazymiai.size() / 2]);
         return 0.4 * mediana + 0.6 * studentas.egzaminas;
+        }
     }
-};
-//----------------------------------------------------------
-void rusiavimas(vector<Studentas>& studentai) {
-    std::sort(studentai.begin(), studentai.end(), [](const Studentas& a, const Studentas& b) {
-        return a.pavarde < b.pavarde;
-    });
+    catch (const exception& e) {
+        cerr << "Klaida: " << e.what() << endl;
+        return 0.0;
+    }
 };
 //----------------------------------------------------------
 void rusiavimas(vector<Studentas>& studentai) {
