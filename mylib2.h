@@ -26,5 +26,7 @@ void skaityti(vector<Studentas>& studentai, const string& pav);
 float galutinisVid(const Studentas& studentas);
 float galutinisMed(const Studentas& studentas);
 void rusiavimas(vector<Studentas>& studentai);
+void generavimas(vector<Studentas>& studentai, int count, const string& failas);
+void saugojimas(const string& failas, const vector<Studentas>& studentai);
 
 #endif // MYLIB2_H_INCLUDED
