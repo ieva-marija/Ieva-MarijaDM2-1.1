@@ -21,6 +21,7 @@ void generavimas(vector<Studentas>& studentai, int count, const string& failas)
         studentas.egzaminas = rand() % 10 + 1;
         studentai.push_back(studentas);
     }
+    rusiavimas(studentai);
     saugojimas(failas, studentai);
 }
 
@@ -31,20 +32,31 @@ void saugojimas(const string& failas, const vector<Studentas>& studentai)
         cerr << "Nepavyko atidaryti failo " << failas << endl;
         return;
     }
-
-    F << "Vardas Pavarde";
-    for (int i = 1; i <= 15; i++) {
-        F << " ND" << i;
-    }
-    F << " Egzaminas" << endl;
-
+    F << left << setw(15) << "Vardas" << setw(15) << " Pavarde" << setw(15) << "Galutinis (Vid.) " << setw(15) << "Galutinis (Med.)" << endl;
     for (const Studentas& studentas : studentai) {
-        F << studentas.vardas << " " << studentas.pavarde;
-        for (int pazymys : studentas.pazymiai) {
-            F << " " << pazymys;
-        }
-        F << "  " << studentas.egzaminas << endl;
+        F << setw(15) << studentas.vardas << " " << setw(15) << studentas.pavarde;
+        F << " " << fixed << setprecision(2) << setw(16) << galutinisVid(studentas) << " " << fixed << setprecision(2) << galutinisMed(studentas) << endl;
     }
-
     F.close();
+}
+
+void rusiavimas2(const vector<Studentas>& studentai, vector<Studentas>& vargsiukai, vector<Studentas>& kietiakai)
+{
+    for (const Studentas& studentas : studentai) {
+        float galutinis = galutinisVid(studentas);
+        if (galutinis < 5.0) {
+            vargsiukai.push_back(studentas);
+        } else if (galutinis >=5 && galutinis <= 10) {
+            kietiakai.push_back(studentas);
+        }
+        else {
+            throw runtime_error("kazkas su pazymiais negerai...");
+        }
+    }
+}
+
+void isvedimas(const string& failas_vargsiukai, const string& failas_kietiakai, const vector<Studentas>& vargsiukai, const vector<Studentas>& kietiakai)
+{
+    saugojimas(failas_vargsiukai, vargsiukai);
+    saugojimas(failas_kietiakai, kietiakai);
 }
