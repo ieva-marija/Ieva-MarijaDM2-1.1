@@ -21,12 +21,14 @@ using std::right;
 using std::sort;
 
 Studentas ivesk();
-int rankinisFailinis(vector<Studentas>& studentai);
-void skaityti(vector<Studentas>& studentai, const string& pav);
 float galutinisVid(const Studentas& studentas);
 float galutinisMed(const Studentas& studentas);
+void skaityti(vector<Studentas>& studentai, const string& pav);
 void rusiavimas(vector<Studentas>& studentai);
+int rankinisFailinis(vector<Studentas>& studentai);
 void generavimas(vector<Studentas>& studentai, int count, const string& failas);
 void saugojimas(const string& failas, const vector<Studentas>& studentai);
+void rusiavimas2(const vector<Studentas>& studentai, vector<Studentas>& vargsiukai, vector<Studentas>& kietiakai);
+void isvedimas(const string& failas_vargsiukai, const string& failas_kietiakai, const vector<Studentas>& vargsiukai, const vector<Studentas>& kietiakai);
 
-#endif // MYLIB2_H_INCLUDED
+#endif 
