@@ -97,9 +97,9 @@ int rankinisFailinis(vector<Studentas>& studentai) {
     }
     else if(pasirinkimas3 == 'F' || pasirinkimas3 == 'f')
     {
-        string failoPavadinimas = "kursiokai.txt";
+        string failoPavadinimas = "studentai10000.txt";
         skaityti(studentai, failoPavadinimas);
-    }
+   }
     else
     {
         cout << "PASIRINK" << endl;
@@ -154,28 +154,16 @@ void skaityti(vector<Studentas>& studentai, const string& pav) {
 };
 //-------------------------------------------------------
 float galutinisVid(const Studentas& studentas) {
-    try {
     float vidurkis = 0;
-    if (studentas.pazymiai.empty()) {
-            throw runtime_error("cia nieko nera??");
-        }
     for (int pazymys : studentas.pazymiai) {
         vidurkis += pazymys;
     }
     vidurkis = static_cast<float>(vidurkis) / studentas.pazymiai.size();
     return 0.4 * vidurkis + 0.6 * studentas.egzaminas;
-    }
-    catch (const exception& e) {
-        cerr << "Klaida: " << e.what() << endl;
-        return 0.0;
-    }
 };
+
 //--------------------------------------------------------
 float galutinisMed(const Studentas& studentas) {
-    try {
-    if (studentas.pazymiai.empty()) {
-        throw runtime_error("kaip skaiciuosi mediana, jei cia nieko nera?");
-    }
     vector<int> pazymiai = studentas.pazymiai;
     sort(pazymiai.begin(), pazymiai.end());
     if (pazymiai.size() % 2 == 0) {
@@ -186,11 +174,6 @@ float galutinisMed(const Studentas& studentas) {
         float mediana = static_cast<float>(pazymiai[pazymiai.size() / 2]);
         return 0.4 * mediana + 0.6 * studentas.egzaminas;
         }
-    }
-    catch (const exception& e) {
-        cerr << "Klaida: " << e.what() << endl;
-        return 0.0;
-    }
 };
 //----------------------------------------------------------
 void rusiavimas(vector<Studentas>& studentai) {
