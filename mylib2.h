@@ -23,12 +23,22 @@ using std::sort;
 Studentas ivesk();
 float galutinisVid(const Studentas& studentas);
 float galutinisMed(const Studentas& studentas);
+
 void skaityti(vector<Studentas>& studentai, const string& pav);
 void rusiavimas(vector<Studentas>& studentai);
 int rankinisFailinis(vector<Studentas>& studentai);
+
 void generavimas(vector<Studentas>& studentai, int count, const string& failas);
 void saugojimas(const string& failas, const vector<Studentas>& studentai);
-void rusiavimas2(const vector<Studentas>& studentai, vector<Studentas>& vargsiukai, vector<Studentas>& kietiakai);
-void isvedimas(const string& failas_vargsiukai, const string& failas_kietiakai, const vector<Studentas>& vargsiukai, const vector<Studentas>& kietiakai);
+void skaityti2(vector<Studentas>& studentai, const string& pav);
 
-#endif 
+void rusiavimas2(const vector<Studentas>& studentai, vector<Studentas>& vargsiukai, vector<Studentas>& kietiakai);
+void isvedimasV(const string& failas_vargsiukai, const vector<Studentas>& vargsiukai);
+void isvedimasK(const string& failas_kietiakai, const vector<Studentas>& kietiakai);
+
+void generavimoL(vector<Studentas>& studentai, int skaicius, const string& failas);
+void skaitymoL(vector<Studentas>& studentai, int skaicius, const string& failas);
+void rusiavimoL(vector<Studentas>& studentai, int skaicius, vector<Studentas>& vargsiukai, vector<Studentas>& kietiakai);
+void isvedimoVL(const string& failas_vargsiukai, int skaicius, const vector<Studentas>& vargsiukai);
+void isvedimoKL(const string& failas_kietiakai, int skaicius, const vector<Studentas>& kietiakai);
+#endif
