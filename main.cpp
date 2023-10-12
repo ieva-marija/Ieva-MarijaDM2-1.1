@@ -3,41 +3,61 @@
 #include "mylib.h"
 #include "mylib2.h"
 #include <limits>
+#include <chrono>
 
 using namespace std;
 
 int main()
 {
     vector <Studentas> studentai;
-    generavimas(studentai, 1000, "s_1000.txt");
+    
     vector<Studentas> vargsiukai_1000;
     vector<Studentas> kietiakai_1000;
-    rusiavimas2(studentai, vargsiukai_1000, kietiakai_1000);
-    isvedimas("vargsiukai_1000.txt", "kietiakai_1000.txt", vargsiukai_1000, kietiakai_1000);
+    generavimoL(studentai, 1000, "s_1000.txt");
+    skaitymoL(studentai, 1000, "s_1000.txt");
+    rusiavimoL(studentai, 1000, vargsiukai_1000, kietiakai_1000);
+    isvedimoVL("vargsiukai_1000.txt", 1000, vargsiukai_1000);
+    isvedimoKL("kietiakai_1000.txt", 1000, kietiakai_1000);
 
-    generavimas(studentai, 10000, "s_10000.txt");
+    cout<< "///////////////////////////////////////////////////////////////////////////" << endl;
+
     vector<Studentas> vargsiukai_10000;
     vector<Studentas> kietiakai_10000;
-    rusiavimas2(studentai, vargsiukai_10000, kietiakai_10000);
-    isvedimas("vargsiukai_10000.txt", "kietiakai_10000.txt", vargsiukai_10000, kietiakai_10000);
+    generavimoL(studentai, 10000, "s_10000.txt");
+    skaitymoL(studentai, 10000, "s_10000.txt");
+    rusiavimoL(studentai, 10000, vargsiukai_10000, kietiakai_10000);
+    isvedimoVL("vargsiukai_10000.txt", 10000, vargsiukai_10000);
+    isvedimoKL("kietiakai_10000.txt", 10000, kietiakai_10000);
 
-    generavimas(studentai, 100000, "s_100000.txt");
+    cout<< "///////////////////////////////////////////////////////////////////////////" << endl;
+
     vector<Studentas> vargsiukai_100000;
     vector<Studentas> kietiakai_100000;
-    rusiavimas2(studentai, vargsiukai_100000, kietiakai_100000);
-    isvedimas("vargsiukai_100000.txt", "kietiakai_100000.txt", vargsiukai_100000, kietiakai_100000);
+    generavimoL(studentai, 100000, "s_100000.txt");
+    skaitymoL(studentai, 100000, "s_100000.txt");
+    rusiavimoL(studentai, 100000, vargsiukai_100000, kietiakai_100000);
+    isvedimoVL("vargsiukai_100000.txt", 100000, vargsiukai_100000);
+    isvedimoKL("kietiakai_100000.txt", 100000, kietiakai_100000);
 
-    generavimas(studentai, 1000000, "s_1000000.txt");
+    cout<< "///////////////////////////////////////////////////////////////////////////" << endl;
+
     vector<Studentas> vargsiukai_1000000;
     vector<Studentas> kietiakai_1000000;
-    rusiavimas2(studentai, vargsiukai_1000000, kietiakai_1000000);
-    isvedimas("vargsiukai_1000000.txt", "kietiakai_1000000.txt", vargsiukai_1000000, kietiakai_1000000);
+    generavimoL(studentai, 1000000, "s_1000000.txt");
+    skaitymoL(studentai, 1000000, "s_1000000.txt");
+    rusiavimoL(studentai, 1000000, vargsiukai_1000000, kietiakai_1000000);
+    isvedimoVL("vargsiukai_1000000.txt", 1000000, vargsiukai_1000000);
+    isvedimoKL("kietiakai_1000000.txt", 1000000, kietiakai_1000000);
 
-    generavimas(studentai, 10000000, "s_10000000.txt");
+    cout<< "///////////////////////////////////////////////////////////////////////////" << endl;
+
     vector<Studentas> vargsiukai_10000000;
     vector<Studentas> kietiakai_10000000;
-    rusiavimas2(studentai, vargsiukai_10000000, kietiakai_10000000);
-    isvedimas("vargsiukai_10000000.txt", "kietiakai_10000000.txt", vargsiukai_10000000, kietiakai_10000000);
+    generavimoL(studentai, 10000000, "s_10000000.txt");
+    skaitymoL(studentai, 10000000, "s_10000000.txt");
+    rusiavimoL(studentai, 10000000, vargsiukai_10000000, kietiakai_10000000);
+    isvedimoVL("vargsiukai_10000000.txt", 10000000, vargsiukai_10000000);
+    isvedimoKL("kietiakai_10000000.txt", 10000000, kietiakai_10000000);
 
     return 0;
 }
