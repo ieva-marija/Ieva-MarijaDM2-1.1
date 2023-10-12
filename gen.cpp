@@ -20,10 +20,12 @@ void generavimas(vector<Studentas>& studentai, int count, const string& failas)
             studentas.pazymiai.push_back(rand() % 10 + 1);
         }
         studentas.egzaminas = rand() % 10 + 1;
+        studentas.rezultatasv = galutinisVid(studentas);
+        studentas.rezultatasm = galutinisMed(studentas);
         studentai.push_back(studentas);
     }
-    rusiavimas(studentai);
     saugojimas(failas, studentai);
+    rusiavimas(studentai);
 }
 
 void saugojimas(const string& failas, const vector<Studentas>& studentai)
@@ -37,7 +39,7 @@ void saugojimas(const string& failas, const vector<Studentas>& studentai)
     F << left << setw(15) << "Vardas" << setw(15) << " Pavarde" << setw(15) << "Galutinis (Vid.) " << setw(15) << "Galutinis (Med.)" << endl;
     for (const Studentas& studentas : studentai) {
         F << setw(15) << studentas.vardas << " " << setw(15) << studentas.pavarde;
-        F << " " << fixed << setprecision(2) << setw(16) << galutinisVid(studentas) << " " << fixed << setprecision(2) << galutinisMed(studentas) << endl;
+        F << " " << fixed << setprecision(2) << setw(16) << studentas.rezultatasv << " " << fixed << setprecision(2) << studentas.rezultatasm << endl;
     }
     F.close();
 }
@@ -72,7 +74,7 @@ void skaityti2(vector<Studentas>& studentai, const string& pav) {
 void rusiavimas2(const vector<Studentas>& studentai, vector<Studentas>& vargsiukai, vector<Studentas>& kietiakai)
 {
     for (const Studentas& studentas : studentai) {
-        float galutinis = galutinisVid(studentas);
+        float galutinis = studentas.rezultatasv;
 
         if (galutinis < 5.0) {
             vargsiukai.push_back(studentas);
