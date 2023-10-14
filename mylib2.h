@@ -23,7 +23,6 @@ using std::sort;
 Studentas ivesk();
 float galutinisVid(const Studentas& studentas);
 float galutinisMed(const Studentas& studentas);
-
 void skaityti(vector<Studentas>& studentai, const string& pav);
 void rusiavimas(vector<Studentas>& studentai);
 int rankinisFailinis(vector<Studentas>& studentai);
@@ -41,4 +40,6 @@ void skaitymoL(vector<Studentas>& studentai, int skaicius, const string& failas)
 void rusiavimoL(vector<Studentas>& studentai, int skaicius, vector<Studentas>& vargsiukai, vector<Studentas>& kietiakai);
 void isvedimoVL(const string& failas_vargsiukai, int skaicius, const vector<Studentas>& vargsiukai);
 void isvedimoKL(const string& failas_kietiakai, int skaicius, const vector<Studentas>& kietiakai);
+
+void testavimas(const string& failoPav, int skaicius, const string& kietiakaiF, const string& vargsiukaiF);
 #endif
