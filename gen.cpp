@@ -73,6 +73,8 @@ void skaityti2(vector<Studentas>& studentai, const string& pav) {
 
 void rusiavimas2(const vector<Studentas>& studentai, vector<Studentas>& vargsiukai, vector<Studentas>& kietiakai)
 {
+    kietiakai.clear();
+    vargsiukai.clear();
     for (const Studentas& studentas : studentai) {
         float galutinis = studentas.rezultatasv;
 
@@ -107,7 +109,6 @@ void skaitymoL(vector<Studentas>& studentai, int skaicius, const string& failas)
     skaityti2(studentai, failas);
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> duration = end - start;
-    cout << skaicius << " irasu failo skaitymas uztruko: " << duration.count() << endl;
 }
 
 void rusiavimoL(vector<Studentas>& studentai, int skaicius, vector<Studentas>& vargsiukai, vector<Studentas>& kietiakai) {
@@ -115,7 +116,6 @@ void rusiavimoL(vector<Studentas>& studentai, int skaicius, vector<Studentas>& v
     rusiavimas2(studentai, vargsiukai, kietiakai);
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> duration = end - start;
-    cout << skaicius << " irasu rusiavimas uztruko: " << duration.count() << endl;
 }
 
 void isvedimoVL(const string& failas_vargsiukai, int skaicius, const vector<Studentas>& vargsiukai) {
@@ -123,7 +123,6 @@ void isvedimoVL(const string& failas_vargsiukai, int skaicius, const vector<Stud
     isvedimasV(failas_vargsiukai, vargsiukai);
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> duration = end - start;
-    cout << skaicius << " irasu vargsiuku isvedimas uztruko: " << duration.count() << endl;
 }
 
 void isvedimoKL(const string& failas_kietiakai, int skaicius, const vector<Studentas>& kietiakai) {
@@ -131,5 +130,4 @@ void isvedimoKL(const string& failas_kietiakai, int skaicius, const vector<Stude
     isvedimasK(failas_kietiakai, kietiakai);
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> duration = end - start;
-    cout << skaicius << " irasu kietiaku isvedimas uztruko: " << duration.count() << endl;
 }
