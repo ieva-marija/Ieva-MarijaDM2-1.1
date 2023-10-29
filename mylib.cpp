@@ -23,7 +23,7 @@ Studentas ivesk()
   cout << "Ar norite, kad programa studento pazymius ir egzamino rezultata generuotu atsitiktinai?" << endl;
   cout << "5 - taip, noriu, aciu" << endl;
   cout << "9 - ne, noriu ivesti savarankiskai" << endl;
-    cin >> pasirinkimas2;
+  cin >> pasirinkimas2;
 
     if (pasirinkimas2 == 5) {
         srand(time(0));
@@ -34,7 +34,6 @@ Studentas ivesk()
             temp.pazymiai.push_back(a_pazymys);
             cout << a_pazymys << " ";
         }
-
         srand(time(0));
         temp.egzaminas = rand() % 11 + 1;
         cout << "Sugeneruotas egzamino pazymys: "<< temp.egzaminas << endl;
@@ -170,13 +169,14 @@ float galutinisVidList(const Studentas2& studentas) {
     vidurkis = static_cast<float>(vidurkis) / studentas.pazymiai.size();
     return 0.4 * vidurkis + 0.6 * studentas.egzaminas;
 };
+
 //--------------------------------------------------------
 float galutinisMedVector(const Studentas& studentas) {
     vector<int> pazymiai = studentas.pazymiai;
     sort(pazymiai.begin(), pazymiai.end());
     if (pazymiai.size() % 2 == 0) {
         int vidurys = pazymiai.size() / 2;
-        float mediana = static_cast<float>(pazymiai[vidurys + 1] + pazymiai[vidurys]) / 2;
+        float mediana = static_cast<float>(pazymiai[vidurys - 1] + pazymiai[vidurys]) / 2;
         return 0.4 * mediana + 0.6 * studentas.egzaminas;
     } else {
         float mediana = static_cast<float>(pazymiai[pazymiai.size() / 2]);
@@ -187,19 +187,17 @@ float galutinisMedVector(const Studentas& studentas) {
 float galutinisMedList(const Studentas2& studentas) {
     list<int> pazymiai = studentas.pazymiai;
     pazymiai.sort();
-    if (pazymiai.size() % 2 == 0) 
-    {
+    if (pazymiai.size() % 2 == 0) {
         auto it1 = std::next(pazymiai.begin(), pazymiai.size() / 2 - 1);
         auto it2 = std::next(pazymiai.begin(), pazymiai.size() / 2);
         float mediana = (static_cast<float>(*it1) + static_cast<float>(*it2)) / 2.0f;
         return 0.4 * mediana + 0.6 * studentas.egzaminas;
     }
-    else 
-    {
+    else {
         auto it = std::next(pazymiai.begin(), pazymiai.size() / 2);
         float mediana = static_cast<float>(*it);
-        return 0.4 * mediana + 0.6 * studentas.egzaminas;
-    }
+        return 0.4 * mediana + 0.6 * studentas.egzaminas;}
+
 };
 //----------------------------------------------------------
 void rusiavimasVector(vector<Studentas>& studentai) {
