@@ -181,3 +181,9 @@ void rusiavimasVector(vector<Studentas>& studentai) {
         return a.pavarde < b.pavarde;
     });
 };
+//----------------------------------------------------------
+void rusiavimasList(list<Studentas>& studentai2) {
+    studentai2.sort([](const Studentas& a, const Studentas& b) {
+        return a.pavarde < b.pavarde;
+    });
+};
