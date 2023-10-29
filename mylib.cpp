@@ -6,6 +6,7 @@
 #include <limits>
 #include <fstream>
 #include <sstream>
+#include <list>
 
 using namespace std;
 
@@ -35,7 +36,7 @@ Studentas ivesk()
         }
 
         srand(time(0));
-        temp.egzaminas = rand() % 10 + 1;
+        temp.egzaminas = rand() % 11 + 1;
         cout << "Sugeneruotas egzamino pazymys: "<< temp.egzaminas << endl;
         cout << "\n";
     }
@@ -72,8 +73,8 @@ Studentas ivesk()
         cout << "nu cia nei 5, nei 9........" << endl;
         return temp;
      }
-     temp.rezultatasv=galutinisVid(temp);
-     temp.rezultatasm=galutinisMed(temp);
+     temp.rezultatasv=galutinisVidVector(temp);
+     temp.rezultatasm=galutinisMedVector(temp);
   return temp;
 };
 //----------------------------------------------------------------
@@ -115,7 +116,6 @@ void skaityti(vector<Studentas>& studentai, const string& pav) {
    if (!F) {
         throw runtime_error("nera tokio failo: " + pav);
     }
-
     string line;
     bool firstLine = true;
     while (getline(F, line)) {
@@ -136,8 +136,8 @@ void skaityti(vector<Studentas>& studentai, const string& pav) {
             if (studentas.pazymiai.size() > 0) {
                 studentas.egzaminas = studentas.pazymiai.back();
                 studentas.pazymiai.pop_back();
-                studentas.rezultatasv = galutinisVid(studentas);
-                studentas.rezultatasm = galutinisMed(studentas);
+                studentas.rezultatasv = galutinisVidVector(studentas);
+                studentas.rezultatasm = galutinisMedVector(studentas);
                 studentai.push_back(studentas);
             } else {
                 cout << "erroras!" << endl;
@@ -153,7 +153,7 @@ void skaityti(vector<Studentas>& studentai, const string& pav) {
     }
 };
 //-------------------------------------------------------
-float galutinisVid(const Studentas& studentas) {
+float galutinisVidVector(const Studentas& studentas) {
     float vidurkis = 0;
     for (int pazymys : studentas.pazymiai) {
         vidurkis += pazymys;
@@ -161,19 +161,45 @@ float galutinisVid(const Studentas& studentas) {
     vidurkis = static_cast<float>(vidurkis) / studentas.pazymiai.size();
     return 0.4 * vidurkis + 0.6 * studentas.egzaminas;
 };
-
+//-------------------------------------------------------
+float galutinisVidList(const Studentas2& studentas) {
+    float vidurkis = 0;
+    for (int pazymys : studentas.pazymiai) {
+        vidurkis += pazymys;
+    }
+    vidurkis = static_cast<float>(vidurkis) / studentas.pazymiai.size();
+    return 0.4 * vidurkis + 0.6 * studentas.egzaminas;
+};
 //--------------------------------------------------------
-float galutinisMed(const Studentas& studentas) {
+float galutinisMedVector(const Studentas& studentas) {
     vector<int> pazymiai = studentas.pazymiai;
     sort(pazymiai.begin(), pazymiai.end());
     if (pazymiai.size() % 2 == 0) {
         int vidurys = pazymiai.size() / 2;
-        float mediana = static_cast<float>(pazymiai[vidurys - 1] + pazymiai[vidurys]) / 2;
+        float mediana = static_cast<float>(pazymiai[vidurys + 1] + pazymiai[vidurys]) / 2;
         return 0.4 * mediana + 0.6 * studentas.egzaminas;
     } else {
         float mediana = static_cast<float>(pazymiai[pazymiai.size() / 2]);
         return 0.4 * mediana + 0.6 * studentas.egzaminas;
         }
+};
+//-------------------------------------------------------
+float galutinisMedList(const Studentas2& studentas) {
+    list<int> pazymiai = studentas.pazymiai;
+    pazymiai.sort();
+    if (pazymiai.size() % 2 == 0) 
+    {
+        auto it1 = std::next(pazymiai.begin(), pazymiai.size() / 2 - 1);
+        auto it2 = std::next(pazymiai.begin(), pazymiai.size() / 2);
+        float mediana = (static_cast<float>(*it1) + static_cast<float>(*it2)) / 2.0f;
+        return 0.4 * mediana + 0.6 * studentas.egzaminas;
+    }
+    else 
+    {
+        auto it = std::next(pazymiai.begin(), pazymiai.size() / 2);
+        float mediana = static_cast<float>(*it);
+        return 0.4 * mediana + 0.6 * studentas.egzaminas;
+    }
 };
 //----------------------------------------------------------
 void rusiavimasVector(vector<Studentas>& studentai) {
@@ -182,8 +208,8 @@ void rusiavimasVector(vector<Studentas>& studentai) {
     });
 };
 //----------------------------------------------------------
-void rusiavimasList(list<Studentas>& studentai2) {
-    studentai2.sort([](const Studentas& a, const Studentas& b) {
+void rusiavimasList(list<Studentas2>& studentai2) {
+    studentai2.sort([](const Studentas2& a, const Studentas2& b) {
         return a.pavarde < b.pavarde;
     });
 };
