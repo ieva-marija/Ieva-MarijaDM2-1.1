@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void generavimas(vector<Studentas>& studentai, int count, const string& failas)
+void generavimasVector(vector<Studentas>& studentai, int count, const string& failas)
 {
     studentai.clear();
     for (int i = 1; i < count +1; i++) {
@@ -20,22 +20,21 @@ void generavimas(vector<Studentas>& studentai, int count, const string& failas)
             studentas.pazymiai.push_back(rand() % 10 + 1);
         }
         studentas.egzaminas = rand() % 10 + 1;
-        studentas.rezultatasv = galutinisVid(studentas);
-        studentas.rezultatasm = galutinisMed(studentas);
+        studentas.rezultatasv = galutinisVidVector(studentas);
+        studentas.rezultatasm = galutinisMedVector(studentas);
         studentai.push_back(studentas);
     }
-    saugojimas(failas, studentai);
-    rusiavimas(studentai);
+    saugojimasVector(failas, studentai);
+    rusiavimasVector(studentai);
 }
 
-void saugojimas(const string& failas, const vector<Studentas>& studentai)
+void saugojimasVector(const string& failas, const vector<Studentas>& studentai)
 {
     ofstream F(failas);
     if (!F) {
         cerr << "Nepavyko atidaryti failo " << failas << endl;
         return;
     }
-
     F << left << setw(15) << "Vardas" << setw(15) << " Pavarde" << setw(15) << "Galutinis (Vid.) " << setw(15) << "Galutinis (Med.)" << endl;
     for (const Studentas& studentas : studentai) {
         F << setw(15) << studentas.vardas << " " << setw(15) << studentas.pavarde;
@@ -44,7 +43,7 @@ void saugojimas(const string& failas, const vector<Studentas>& studentai)
     F.close();
 }
 
-void skaityti2(vector<Studentas>& studentai, const string& pav) {
+void skaityti2Vector(vector<Studentas>& studentai, const string& pav) {
     ifstream F(pav);
 
    try {
@@ -71,7 +70,7 @@ void skaityti2(vector<Studentas>& studentai, const string& pav) {
     }
 };
 
-void rusiavimas2(const vector<Studentas>& studentai, vector<Studentas>& vargsiukai, vector<Studentas>& kietiakai)
+void rusiavimas2Vector(const vector<Studentas>& studentai, vector<Studentas>& vargsiukai, vector<Studentas>& kietiakai)
 {
     kietiakai.clear();
     vargsiukai.clear();
@@ -86,48 +85,48 @@ void rusiavimas2(const vector<Studentas>& studentai, vector<Studentas>& vargsiuk
     }
 }
 
-void isvedimasV(const string& failas_vargsiukai, const vector<Studentas>& vargsiukai)
+void isvedimasVVector(const string& failas_vargsiukai, const vector<Studentas>& vargsiukai)
 {
-    saugojimas(failas_vargsiukai, vargsiukai);
+    saugojimasVector(failas_vargsiukai, vargsiukai);
 }
 
-void isvedimasK(const string& failas_kietiakai, const vector<Studentas>& kietiakai)
+void isvedimasKVector(const string& failas_kietiakai, const vector<Studentas>& kietiakai)
 {
-    saugojimas(failas_kietiakai, kietiakai);
+    saugojimasVector(failas_kietiakai, kietiakai);
 }
 
-void generavimoL(vector<Studentas>& studentai, int skaicius, const string& failas) {
+void generavimoLVector(vector<Studentas>& studentai, int skaicius, const string& failas) {
     auto start = std::chrono::high_resolution_clock::now();
-    generavimas(studentai, skaicius, failas);
+    generavimasVector(studentai, skaicius, failas);
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> duration = end - start;
     cout << skaicius << " irasu failo generavimas uztruko: " << duration.count() << endl;
 }
 
-void skaitymoL(vector<Studentas>& studentai, int skaicius, const string& failas) {
+void skaitymoLVector(vector<Studentas>& studentai, int skaicius, const string& failas) {
     auto start = std::chrono::high_resolution_clock::now();
-    skaityti2(studentai, failas);
+    skaityti2Vector(studentai, failas);
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> duration = end - start;
 }
 
-void rusiavimoL(vector<Studentas>& studentai, int skaicius, vector<Studentas>& vargsiukai, vector<Studentas>& kietiakai) {
+void rusiavimoLVector(vector<Studentas>& studentai, int skaicius, vector<Studentas>& vargsiukai, vector<Studentas>& kietiakai) {
     auto start = std::chrono::high_resolution_clock::now();
-    rusiavimas2(studentai, vargsiukai, kietiakai);
+    rusiavimas2Vector(studentai, vargsiukai, kietiakai);
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> duration = end - start;
 }
 
-void isvedimoVL(const string& failas_vargsiukai, int skaicius, const vector<Studentas>& vargsiukai) {
+void isvedimoVLVector(const string& failas_vargsiukai, int skaicius, const vector<Studentas>& vargsiukai) {
     auto start = std::chrono::high_resolution_clock::now();
-    isvedimasV(failas_vargsiukai, vargsiukai);
+    isvedimasVVector(failas_vargsiukai, vargsiukai);
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> duration = end - start;
 }
 
-void isvedimoKL(const string& failas_kietiakai, int skaicius, const vector<Studentas>& kietiakai) {
+void isvedimoKLVector(const string& failas_kietiakai, int skaicius, const vector<Studentas>& kietiakai) {
     auto start = std::chrono::high_resolution_clock::now();
-    isvedimasK(failas_kietiakai, kietiakai);
+    isvedimasKVector(failas_kietiakai, kietiakai);
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> duration = end - start;
 }
