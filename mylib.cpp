@@ -176,7 +176,7 @@ float galutinisMed(const Studentas& studentas) {
         }
 };
 //----------------------------------------------------------
-void rusiavimas(vector<Studentas>& studentai) {
+void rusiavimasVector(vector<Studentas>& studentai) {
     std::sort(studentai.begin(), studentai.end(), [](const Studentas& a, const Studentas& b) {
         return a.pavarde < b.pavarde;
     });
