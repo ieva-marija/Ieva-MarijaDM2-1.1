@@ -24,8 +24,8 @@ void generavimasVector(vector<Studentas>& studentai, int count, const string& fa
         studentas.rezultatasm = galutinisMedVector(studentas);
         studentai.push_back(studentas);
     }
-    saugojimasVector(failas, studentai);
     rusiavimasVector(studentai);
+    saugojimasVector(failas, studentai);
 }
 
 void saugojimasVector(const string& failas, const vector<Studentas>& studentai)
