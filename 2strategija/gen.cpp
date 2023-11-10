@@ -27,7 +27,7 @@ void generavimasVector(vector<Studentas>& studentai, int count, const string& fa
     rusiavimasVector(studentai);
     saugojimasVector(failas, studentai);
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void saugojimasVector(const string& failas, const vector<Studentas>& studentai)
 {
     ofstream F(failas);
@@ -42,7 +42,7 @@ void saugojimasVector(const string& failas, const vector<Studentas>& studentai)
     }
     F.close();
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void skaityti2Vector(vector<Studentas>& studentai, const string& pav) {
     ifstream F(pav);
 
@@ -69,7 +69,7 @@ void skaityti2Vector(vector<Studentas>& studentai, const string& pav) {
         cerr << "neperskaito...:" << e.what() << endl;
     }
 };
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void rusiavimas2Vector(vector<Studentas>& studentai, vector<Studentas>& vargsiukai)
 {
     vargsiukai.clear();
@@ -82,17 +82,17 @@ void rusiavimas2Vector(vector<Studentas>& studentai, vector<Studentas>& vargsiuk
     });
     studentai.erase(it, studentai.end());
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void isvedimasVVector(const string& failas_vargsiukai, const vector<Studentas>& vargsiukai)
 {
     saugojimasVector(failas_vargsiukai, vargsiukai);
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void isvedimasKVector(const string& failas_kietiakai, const vector<Studentas>& studentai)
 {
     saugojimasVector(failas_kietiakai, studentai);
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void generavimoLVector(vector<Studentas>& studentai, int skaicius, const string& failas) {
     auto start = std::chrono::high_resolution_clock::now();
     generavimasVector(studentai, skaicius, failas);
@@ -100,28 +100,28 @@ void generavimoLVector(vector<Studentas>& studentai, int skaicius, const string&
     std::chrono::duration<double> duration = end - start;
     cout << skaicius << " irasu failo generavimas uztruko: " << duration.count() << endl;
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void skaitymoLVector(vector<Studentas>& studentai, int skaicius, const string& failas) {
     auto start = std::chrono::high_resolution_clock::now();
     skaityti2Vector(studentai, failas);
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> duration = end - start;
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void rusiavimoLVector(vector<Studentas>& studentai, int skaicius, vector<Studentas>& vargsiukai) {
     auto start = std::chrono::high_resolution_clock::now();
     rusiavimas2Vector(studentai, vargsiukai);
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> duration = end - start;
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void isvedimoVLVector(const string& failas_vargsiukai, int skaicius, const vector<Studentas>& vargsiukai) {
     auto start = std::chrono::high_resolution_clock::now();
     isvedimasVVector(failas_vargsiukai, vargsiukai);
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> duration = end - start;
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void isvedimoKLVector(const string& failas_kietiakai, int skaicius, const vector<Studentas>& studentai) {
     auto start = std::chrono::high_resolution_clock::now();
     isvedimasKVector(failas_kietiakai, studentai);
