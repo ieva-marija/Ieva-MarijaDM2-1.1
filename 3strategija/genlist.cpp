@@ -73,15 +73,15 @@ void skaityti2List(list<Studentas2>& studentai2, const string& pav) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void rusiavimas2List(list<Studentas2>& studentai2, list<Studentas2>& vargsiukai)
 {
-      vargsiukai.clear();
-    auto it = remove_if(studentai2.begin(), studentai2.end(), [&vargsiukai](const Studentas2& studentas) {
-        if (studentas.rezultatasv < 5) {
-            vargsiukai.push_back(studentas);
-            return true;
-        }
-        return false;
+    vargsiukai.clear();
+
+    std::remove_copy_if(studentai2.begin(), studentai2.end(), std::back_inserter(vargsiukai), [](const Studentas2& studentas) {
+        return studentas.rezultatasv >= 5;
     });
-    studentai2.erase(it, studentai2.end());
+
+    studentai2.erase(std::remove_if(studentai2.begin(), studentai2.end(), [](const Studentas2& studentas) {
+        return studentas.rezultatasv < 5;
+    }), studentai2.end());
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void isvedimasVList(const string& failas_vargsiukai, const list<Studentas2>& vargsiukai)
