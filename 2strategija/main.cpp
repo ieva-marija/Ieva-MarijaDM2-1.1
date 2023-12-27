@@ -26,6 +26,15 @@ int main()
     }
     if (pasirinkimas3 == 'R' || pasirinkimas3 == 'r')
     {
+        cout << "Norite naudoti vector (v) tipo konteinerius ar list (l)?" << endl;
+        while(!(cin >> pasirinkimas2) || (pasirinkimas2!='v' && pasirinkimas2!='V' && pasirinkimas2!='l' && pasirinkimas2!='L'))
+        {
+            cout << "ne taip, per naujo. ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+        if (pasirinkimas2 == 'v' || pasirinkimas2 == 'V')
+    {
         int studentu_sk;
         cout << "Iveskite studentu skaiciu: ";
         while(!(cin >> studentu_sk) || studentu_sk<1 || studentu_sk>100)
@@ -47,6 +56,29 @@ int main()
                      << fixed << setprecision(2) << setw(16) << studentas.rezultatasv << " " << fixed << setprecision(2) << setw(15) << studentas.rezultatasm << endl;
         }
     }
+    else {
+        int studentu_sk;
+        cout << "Iveskite studentu skaiciu: ";
+        while(!(cin >> studentu_sk) || studentu_sk<1 || studentu_sk>100)
+        {
+            cout << "blogi skaiciai. dar! ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+        for (int i = 0; i < studentu_sk; i++)
+        {
+            cout << "Iveskite duomenis apie studenta:" << endl;
+            studentai2.push_back(ivesk2());
+        }
+        cout << left << setw(15) << "Adresas" << setw(15) << "Vardas" << setw(15) << "Pavarde" << setw(15) << "Galutinis (Vid.) " << setw(15) << "Galutinis (Med.)" << endl;
+        cout << "-----------------------------------------------------------------------------------------" << endl;
+        for (const Studentas2& studentas : studentai2)
+        {
+                cout << setw(15) << &studentas << " " << setw(15) << studentas.vardas << setw(15) << studentas.pavarde
+                     << fixed << setprecision(2) << setw(16) << studentas.rezultatasv << " " << fixed << setprecision(2) << setw(15) << studentas.rezultatasm << endl;
+        }
+    }
+}
     else if(pasirinkimas3 == 'F' || pasirinkimas3 == 'f')
     {
         cout << "Norite sugeneruoti duomenis dabar ar norite testuoti jau sugeneruotus is anksciau? 1-dabar, 2-is anksciau" << endl;
