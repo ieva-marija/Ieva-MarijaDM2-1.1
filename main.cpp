@@ -11,6 +11,7 @@ int main()
     list <Studentas2> studentai2;
     int pasirinkimas5;
     char pasirinkimas6;
+    int pasirinkimas4;
 
     char pasirinkimas3;
     cout << "Pasirinkite, kaip norite ivesti duomenis:" << endl;
@@ -33,14 +34,14 @@ int main()
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
-        for (int i = 0; i < studentu_sk; i++) 
+        for (int i = 0; i < studentu_sk; i++)
         {
             cout << "Iveskite duomenis apie studenta:" << endl;
             studentai.push_back(ivesk());
         }
         cout << left << setw(15) << "Adresas" << setw(15) << "Vardas" << setw(15) << "Pavarde" << setw(15) << "Galutinis (Vid.) " << setw(15) << "Galutinis (Med.)" << endl;
         cout << "-----------------------------------------------------------------------------------------" << endl;
-        for (const Studentas& studentas : studentai) 
+        for (const Studentas& studentas : studentai)
         {
                 cout << setw(15) << &studentas << " " << setw(15) << studentas.vardas << setw(15) << studentas.pavarde
                      << fixed << setprecision(2) << setw(16) << studentas.rezultatasv << " " << fixed << setprecision(2) << setw(15) << studentas.rezultatasm << endl;
@@ -62,57 +63,64 @@ int main()
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
+        cout << "Norite rusiuoti duomenis pagal 0 - varda, 1 - pavarde, 2 - galutini bala?";
+        while(!(cin >> pasirinkimas4) || pasirinkimas4<0 || pasirinkimas4>2)
+        {
+            cout << "veskite is naujo";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
         if(pasirinkimas5 == 1)
         {
             if(pasirinkimas6=='v' || pasirinkimas6=='V')
             {
-                generavimoLVector(studentai, 1000, "s_1000.txt");
-                generavimoLVector(studentai, 10000, "s_10000.txt");
-                generavimoLVector(studentai, 100000, "s_100000.txt");
-                generavimoLVector(studentai, 1000000, "s_1000000.txt");
-                generavimoLVector(studentai, 10000000, "s_10000000.txt");
-    
+                generavimoLVector(studentai, 1000, "s_1000.txt", "s0_1000.txt", pasirinkimas4);
+                generavimoLVector(studentai, 10000, "s_10000.txt", "s0_10000.txt", pasirinkimas4);
+                generavimoLVector(studentai, 100000, "s_100000.txt", "s0_100000.txt", pasirinkimas4);
+                generavimoLVector(studentai, 1000000, "s_1000000.txt", "s0_1000000.txt", pasirinkimas4);
+                generavimoLVector(studentai, 10000000, "s_10000000.txt", "s0_10000000.txt", pasirinkimas4);
+
             cout << "-----------------------------------------------------" << endl;
-    
-                testavimasv("s_1000.txt", 1000, "kietiakai_1000.txt", "vargsiukai_1000.txt");
-                testavimasv("s_10000.txt", 10000, "kietiakai_10000.txt", "vargsiukai_10000.txt");
-                testavimasv("s_100000.txt", 100000, "kietiakai_100000.txt", "vargsiukai_100000.txt");
-                testavimasv("s_1000000.txt", 1000000, "kietiakai_1000000.txt", "vargsiukai_1000000.txt");
-                testavimasv("s_10000000.txt", 10000000, "kietiakai_10000000.txt", "vargsiukai_10000000.txt");
+
+                testavimasv("s_1000.txt", "kietiakai_1000.txt", "vargsiukai_1000.txt", pasirinkimas4);
+                testavimasv("s_10000.txt", "kietiakai_10000.txt", "vargsiukai_10000.txt", pasirinkimas4);
+                testavimasv("s_100000.txt", "kietiakai_100000.txt", "vargsiukai_100000.txt", pasirinkimas4);
+                testavimasv("s_1000000.txt", "kietiakai_1000000.txt", "vargsiukai_1000000.txt", pasirinkimas4);
+                testavimasv("s_10000000.txt", "kietiakai_10000000.txt", "vargsiukai_10000000.txt", pasirinkimas4);
             }
             else
             {
-                generavimoLList(studentai2, 1000, "s_1000.txt");
-                generavimoLList(studentai2, 10000, "s_10000.txt");
-                generavimoLList(studentai2, 100000, "s_100000.txt");
-                generavimoLList(studentai2, 1000000, "s_1000000.txt");
-                generavimoLList(studentai2, 10000000, "s_10000000.txt");
-    
+                generavimoLList(studentai2, 1000, "s_1000.txt", "s0_1000.txt", pasirinkimas4);
+                generavimoLList(studentai2, 10000, "s_10000.txt", "s0_10000.txt", pasirinkimas4);
+                generavimoLList(studentai2, 100000, "s_100000.txt", "s0_100000.txt", pasirinkimas4);
+                generavimoLList(studentai2, 1000000, "s_1000000.txt", "s0_1000000.txt", pasirinkimas4);
+                generavimoLList(studentai2, 10000000, "s_10000000.txt", "s0_10000000.txt", pasirinkimas4);
+
             cout << "-----------------------------------------------------" << endl;
-                testavimasl("s_1000.txt", 1000, "kietiakai_1000.txt", "vargsiukai_1000.txt");
-                testavimasl("s_10000.txt", 10000, "kietiakai_10000.txt", "vargsiukai_10000.txt");
-                testavimasl("s_100000.txt", 100000, "kietiakai_100000.txt", "vargsiukai_100000.txt");
-                testavimasl("s_1000000.txt", 1000000, "kietiakai_1000000.txt", "vargsiukai_1000000.txt");
-                testavimasl("s_10000000.txt", 10000000, "kietiakai_10000000.txt", "vargsiukai_10000000.txt");
+                testavimasl("s_1000.txt", "kietiakai_1000.txt", "vargsiukai_1000.txt", pasirinkimas4);
+                testavimasl("s_10000.txt", "kietiakai_10000.txt", "vargsiukai_10000.txt", pasirinkimas4);
+                testavimasl("s_100000.txt", "kietiakai_100000.txt", "vargsiukai_100000.txt", pasirinkimas4);
+                testavimasl("s_1000000.txt", "kietiakai_1000000.txt", "vargsiukai_1000000.txt", pasirinkimas4);
+                testavimasl("s_10000000.txt", "kietiakai_10000000.txt", "vargsiukai_10000000.txt", pasirinkimas4);
             }
         }
         else if (pasirinkimas5 == 2)
         {
             if(pasirinkimas6=='v' || pasirinkimas6=='V')
             {
-                testavimasv("s_1000.txt", 1000, "kietiakai_1000.txt", "vargsiukai_1000.txt");
-                testavimasv("s_10000.txt", 10000, "kietiakai_10000.txt", "vargsiukai_10000.txt");
-                testavimasv("s_100000.txt", 100000, "kietiakai_100000.txt", "vargsiukai_100000.txt");
-                testavimasv("s_1000000.txt", 1000000, "kietiakai_1000000.txt", "vargsiukai_1000000.txt");
-                testavimasv("s_10000000.txt", 10000000, "kietiakai_10000000.txt", "vargsiukai_10000000.txt");
+                testavimasv("s_1000.txt", "kietiakai_1000.txt", "vargsiukai_1000.txt", pasirinkimas4);
+                testavimasv("s_10000.txt", "kietiakai_10000.txt", "vargsiukai_10000.txt", pasirinkimas4);
+                testavimasv("s_100000.txt", "kietiakai_100000.txt", "vargsiukai_100000.txt", pasirinkimas4);
+                testavimasv("s_1000000.txt", "kietiakai_1000000.txt", "vargsiukai_1000000.txt", pasirinkimas4);
+                testavimasv("s_10000000.txt", "kietiakai_10000000.txt", "vargsiukai_10000000.txt", pasirinkimas4);
             }
             else
             {
-                testavimasl("s_1000.txt", 1000, "kietiakai_1000.txt", "vargsiukai_1000.txt");
-                testavimasl("s_10000.txt", 10000, "kietiakai_10000.txt", "vargsiukai_10000.txt");
-                testavimasl("s_100000.txt", 100000, "kietiakai_100000.txt", "vargsiukai_100000.txt");
-                testavimasl("s_1000000.txt", 1000000, "kietiakai_1000000.txt", "vargsiukai_1000000.txt");
-                testavimasl("s_10000000.txt", 10000000, "kietiakai_10000000.txt", "vargsiukai_10000000.txt");
+                testavimasl("s_1000.txt", "kietiakai_1000.txt", "vargsiukai_1000.txt", pasirinkimas4);
+                testavimasl("s_10000.txt", "kietiakai_10000.txt", "vargsiukai_10000.txt", pasirinkimas4);
+                testavimasl("s_100000.txt", "kietiakai_100000.txt", "vargsiukai_100000.txt", pasirinkimas4);
+                testavimasl("s_1000000.txt", "kietiakai_1000000.txt", "vargsiukai_1000000.txt", pasirinkimas4);
+                testavimasl("s_10000000.txt", "kietiakai_10000000.txt", "vargsiukai_10000000.txt", pasirinkimas4);
             }
         }
     }
