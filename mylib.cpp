@@ -211,3 +211,27 @@ void rusiavimasList(list<Studentas2>& studentai2) {
         return a.pavarde < b.pavarde;
     });
 };
+//----------------------------------------------------------
+void rusiavimasVector2(vector<Studentas>& studentai) {
+    std::sort(studentai.begin(), studentai.end(), [](const Studentas& a, const Studentas& b) {
+        return a.vardas > b.vardas;
+    });
+};
+//----------------------------------------------------------
+void rusiavimasList2(list<Studentas2>& studentai2) {
+    studentai2.sort([](const Studentas2& a, const Studentas2& b) {
+        return a.vardas < b.vardas;
+    });
+};
+//----------------------------------------------------------
+void rusiavimasVector3(vector<Studentas>& studentai) {
+    std::sort(studentai.begin(), studentai.end(), [](const Studentas& a, const Studentas& b) {
+        return a.rezultatasv < b.rezultatasv;
+    });
+};
+//----------------------------------------------------------
+void rusiavimasList3(list<Studentas2>& studentai2) {
+    studentai2.sort([](const Studentas2& a, const Studentas2& b) {
+        return a.rezultatasv < b.rezultatasv;
+    });
+};
