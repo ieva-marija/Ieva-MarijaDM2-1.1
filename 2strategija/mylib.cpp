@@ -23,7 +23,7 @@ Studentas ivesk()
   cout << "Ar norite, kad programa studento pazymius ir egzamino rezultata generuotu atsitiktinai?" << endl;
   cout << "5 - taip, noriu, aciu" << endl;
   cout << "9 - ne, noriu ivesti savarankiskai" << endl;
-    cin >> pasirinkimas2;
+  cin >> pasirinkimas2;
 
     if (pasirinkimas2 == 5) {
         srand(time(0));
@@ -34,7 +34,6 @@ Studentas ivesk()
             temp.pazymiai.push_back(a_pazymys);
             cout << a_pazymys << " ";
         }
-
         srand(time(0));
         temp.egzaminas = rand() % 11 + 1;
         cout << "Sugeneruotas egzamino pazymys: "<< temp.egzaminas << endl;
@@ -198,6 +197,7 @@ float galutinisMedList(const Studentas2& studentas) {
         auto it = std::next(pazymiai.begin(), pazymiai.size() / 2);
         float mediana = static_cast<float>(*it);
         return 0.4 * mediana + 0.6 * studentas.egzaminas;}
+
 };
 //----------------------------------------------------------
 void rusiavimasVector(vector<Studentas>& studentai) {
@@ -211,6 +211,27 @@ void rusiavimasList(list<Studentas2>& studentai2) {
         return a.pavarde < b.pavarde;
     });
 };
-
-
-
+//----------------------------------------------------------
+void rusiavimasVector2(vector<Studentas>& studentai) {
+    std::sort(studentai.begin(), studentai.end(), [](const Studentas& a, const Studentas& b) {
+        return a.vardas > b.vardas;
+    });
+};
+//----------------------------------------------------------
+void rusiavimasList2(list<Studentas2>& studentai2) {
+    studentai2.sort([](const Studentas2& a, const Studentas2& b) {
+        return a.vardas < b.vardas;
+    });
+};
+//----------------------------------------------------------
+void rusiavimasVector3(vector<Studentas>& studentai) {
+    std::sort(studentai.begin(), studentai.end(), [](const Studentas& a, const Studentas& b) {
+        return a.rezultatasv < b.rezultatasv;
+    });
+};
+//----------------------------------------------------------
+void rusiavimasList3(list<Studentas2>& studentai2) {
+    studentai2.sort([](const Studentas2& a, const Studentas2& b) {
+        return a.rezultatasv < b.rezultatasv;
+    });
+};
