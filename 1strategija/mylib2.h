@@ -23,6 +23,7 @@ using std::sort;
 using std::list;
 
 Studentas ivesk();
+Studentas2 ivesk();
 float galutinisVidVector(const Studentas& studentas);
 float galutinisVidList(const Studentas2& studentas);
 float galutinisMedVector(const Studentas& studentas);
