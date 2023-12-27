@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void testavimasv(const string& failoPav, int skaicius, const string& kietiakaiF, const string& vargsiukaiF) {
+void testavimasv(const string& failoPav, const string& kietiakaiF, const string& vargsiukaiF, int skaiciux) {
     vector<Studentas> studentai;
     vector<Studentas> vargsiukai;
     vector<double> skaitymoLaikai;
@@ -18,32 +18,33 @@ void testavimasv(const string& failoPav, int skaicius, const string& kietiakaiF,
     vector<double> isvedimoKLaikai;
 
     int kartai = 5;
+    int skaicius;
     for (int i = 0; i < kartai; i++) {
         auto startSk = std::chrono::high_resolution_clock::now();
-        skaitymoLVector(studentai, skaicius, failoPav);
+        skaitymoLVector(studentai, failoPav);
         auto endSk = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> durationSk = endSk - startSk;
         skaitymoLaikai.push_back(durationSk.count());
 
-        rusiavimasVector(studentai);
-
         auto startRus = std::chrono::high_resolution_clock::now();
-        rusiavimoLVector(studentai, skaicius, vargsiukai);
+        rusiavimoLVector(studentai, vargsiukai, skaiciux);
         auto endRus = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> durationRus = endRus - startRus;
         rusiavimoLaikai.push_back(durationRus.count());
 
         auto startIsVL = std::chrono::high_resolution_clock::now();
-        isvedimoVLVector(vargsiukaiF, skaicius, vargsiukai);
+        isvedimoVLVector(vargsiukaiF, vargsiukai);
         auto endIsVL = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> durationIsVL = endIsVL - startIsVL;
         isvedimoVLaikai.push_back(durationIsVL.count());
 
         auto startIsKL = std::chrono::high_resolution_clock::now();
-        isvedimoKLVector(kietiakaiF, skaicius, studentai);
+        isvedimoKLVector(kietiakaiF, studentai);
         auto endIsKL = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> durationIsKL = endIsKL - startIsKL;
         isvedimoKLaikai.push_back(durationIsKL.count());
+
+        skaicius = (studentai.size() + vargsiukai.size());
         studentai.clear();
         vargsiukai.clear();
     }
@@ -60,7 +61,7 @@ void testavimasv(const string& failoPav, int skaicius, const string& kietiakaiF,
     cout << skaicius << " irasu kietiaku isvedimas vidutiniskai uztruko: " << vidIKL << endl;
     cout << "-------------------------------------------------------------------------------------------" << endl;
 }
-void testavimasl(const string& failoPav, int skaicius, const string& kietiakaiF, const string& vargsiukaiF) {
+void testavimasl(const string& failoPav, const string& vargsiukaiF, const string& kietiakaiF, int skaiciux) {
     list<Studentas2> studentai2;
     list<Studentas2> vargsiukai;
     list<double> skaitymoLaikai;
@@ -69,32 +70,33 @@ void testavimasl(const string& failoPav, int skaicius, const string& kietiakaiF,
     list<double> isvedimoKLaikai;
 
     int kartai = 5;
+    int skaicius2;
     for (int i = 0; i < kartai; i++) {
         auto startSk = std::chrono::high_resolution_clock::now();
-        skaitymoLList(studentai2, skaicius, failoPav);
+        skaitymoLList(studentai2, failoPav);
         auto endSk = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> durationSk = endSk - startSk;
         skaitymoLaikai.push_back(durationSk.count());
 
-        rusiavimasList(studentai2);
-
         auto startRus = std::chrono::high_resolution_clock::now();
-        rusiavimoLList(studentai2, skaicius, vargsiukai);
+        rusiavimoLList(studentai2, vargsiukai, skaiciux);
         auto endRus = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> durationRus = endRus - startRus;
         rusiavimoLaikai.push_back(durationRus.count());
 
         auto startIsVL = std::chrono::high_resolution_clock::now();
-        isvedimoVLList(vargsiukaiF, skaicius, vargsiukai);
+        isvedimoVLList(vargsiukaiF, vargsiukai);
         auto endIsVL = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> durationIsVL = endIsVL - startIsVL;
         isvedimoVLaikai.push_back(durationIsVL.count());
 
         auto startIsKL = std::chrono::high_resolution_clock::now();
-        isvedimoKLList(kietiakaiF, skaicius, studentai2);
+        isvedimoKLList(kietiakaiF, studentai2);
         auto endIsKL = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> durationIsKL = endIsKL - startIsKL;
         isvedimoKLaikai.push_back(durationIsKL.count());
+
+        skaicius2 = (studentai2.size() + vargsiukai.size());
         studentai2.clear();
         vargsiukai.clear();
     }
@@ -105,9 +107,9 @@ void testavimasl(const string& failoPav, int skaicius, const string& kietiakaiF,
     double vidIKL = std::accumulate(isvedimoKLaikai.begin(), isvedimoKLaikai.end(), 0.0) / isvedimoKLaikai.size();
 
     cout << "List konteineriu: " << endl;
-    cout << skaicius << " irasu skaitymas vidutiniskai uztruko: " << vidSL << endl;
-    cout << skaicius << " irasu rusiavimas vidutiniskai uztruko: " << vidRL << endl;
-    cout << skaicius << " irasu vargsiuku isvedimas vidutiniskai uztruko: " << vidIVL << endl;
-    cout << skaicius << " irasu kietiaku isvedimas vidutiniskai uztruko: " << vidIKL << endl;
+    cout << skaicius2 << " irasu skaitymas vidutiniskai uztruko: " << vidSL << endl;
+    cout << skaicius2 << " irasu rusiavimas vidutiniskai uztruko: " << vidRL << endl;
+    cout << skaicius2 << " irasu vargsiuku isvedimas vidutiniskai uztruko: " << vidIVL << endl;
+    cout << skaicius2 << " irasu kietiaku isvedimas vidutiniskai uztruko: " << vidIKL << endl;
     cout << "-------------------------------------------------------------------------------------------" << endl;
 }
