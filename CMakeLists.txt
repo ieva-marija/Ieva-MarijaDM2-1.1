@@ -1,7 +1,11 @@
 cmake_minimum_required(VERSION 3.25)
 project(strategija)
-include_directories(include)
-set(CMAKE_C_COMPILER "cl.exe")
-set(CMAKE_CXX_COMPILER "cl.exe")
-file(GLOB SOURCES "src/* .cpp")
-add_executable(strategija ${SOURCES})
+set(SOURCES
+    src/main.cpp
+    src/test.cpp
+    src/gen.cpp
+    src/mylib.cpp
+    src/genlist.cpp
+)
+add_executable(my_executables ${SOURCES})
+target_include_directories(my_executables PRIVATE include)
